@@ -1,0 +1,19 @@
+{
+  "name": "periodic-promises",
+  "version": "0.0.1",
+  "description": "Asynchronous periodic polling with promises",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "javascript",
+    "promises",
+    "timeout",
+    "interval",
+    "polling",
+    "async"
+  ],
+  "author": "Raffaele Pizzari <raffaele.pizzari@gmail.com>",
+  "license": "ISC"
+}
