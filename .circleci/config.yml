@@ -41,7 +41,6 @@ jobs:
           name: Build, authenticate, and publish package
           command: |
             npm run build
-            cd pkg
             ls -la
             echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/repo/pkg/.npmrc
             npm publish
