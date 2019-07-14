@@ -1,6 +1,6 @@
 {
   "name": "periodic-promise",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Asynchronous periodic polling with promise",
   "main": "index.js",
   "module": "dist/periodic-promise.esm.js",
@@ -9,6 +9,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "test": "jest",
+    "lint": "eslint \"./src/*.js\"",
     "test:watch": "jest --watch",
     "pretest": "npm run build"
   },
