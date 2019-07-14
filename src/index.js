@@ -48,7 +48,12 @@ const calcLimits = (limit) => {
   return { stopByLimit, newLimit };
 };
 
-const periodicPromise = function periodicPromise(delay, action, callback, limit = null) {
+const periodicPromise = function periodicPromise(
+  delay,
+  action,
+  callback,
+  limit = null,
+) {
   let config = {};
 
   try {
