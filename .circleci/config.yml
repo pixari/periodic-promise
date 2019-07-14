@@ -32,13 +32,30 @@ jobs:
       - persist_to_workspace:
           root: ~/repo
           paths: .
-
+  publish:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Build, authenticate, and publish package
+          command: |
+            npm run build
+            cd pkg
+            ls -la
+            echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/repo/pkg/.npmrc
+            npm publish
 
 workflows:
   version: 2
-  test:
+  test-publish:
     jobs:
-      - test:
+      - test
+      - publish:
+          requires:
+            - test
           filters:
             tags:
               only: /^v.*/
+            branches:
+              ignore: /.*/
