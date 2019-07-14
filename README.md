@@ -60,3 +60,46 @@ periodicPromise(delay, action, callback, limit);
 | callback  | Required. The function that will be call after every execution with the response of "action" as first param. If the returned value is truthy, the execution will continue. If the returned value is falsy, the execution will be stopped. | N/A              |
 | limit     | Optional. After how many times the execution will be stopped.                                                                                                                                                                             | false (no limit) |
 
+
+## :pencil: Documentation
+### :rotating_light: Tests
+
+Run your unit tests once:
+
+```bash
+npm run test
+```
+
+or in watch mode:
+```bash
+npm run test:watch
+```
+
+### :construction_worker: Build
+
+Build the library:
+
+```bash
+npm run build
+```
+
+### :rocket: Dev mode
+
+In dev mode, you can build in real-time your changes:
+
+```bash
+npm run dev
+```
+
+
+## :exclamation: Issues
+
+I'm sure you'll find bugs and when you do it would be great if you'd could [report them here](https://github.com/pixari/periodic-promise/issues).
+
+## :muscle: Contribution
+
+The project is still in its early stages and in progress. I think there's no need for guidelines yet, so feel free to contribute or give feedback as you prefer.
+
+## :copyright: License
+
+[MIT](http://opensource.org/licenses/MIT)
