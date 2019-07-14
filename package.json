@@ -3,8 +3,14 @@
   "version": "0.0.1",
   "description": "Asynchronous periodic polling with promises",
   "main": "index.js",
+  "module": "dist/periodic-promises.esm.js",
+  "browser": "dist/peiodic-promises.umd.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "pretest": "npm run build"
   },
   "keywords": [
     "javascript",
@@ -15,5 +21,18 @@
     "async"
   ],
   "author": "Raffaele Pizzari <raffaele.pizzari@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
+    "babel-jest": "^24.8.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.0",
+    "jest": "^24.8.0",
+    "rollup": "^1.16.7",
+    "rollup-plugin-commonjs": "^10.0.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "@types/jest": "^24.0.15"
+  }
 }
