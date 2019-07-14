@@ -1,10 +1,10 @@
 {
-  "name": "periodic-promises",
+  "name": "periodic-promise",
   "version": "0.0.1",
-  "description": "Asynchronous periodic polling with promises",
+  "description": "Asynchronous periodic polling with promise",
   "main": "index.js",
-  "module": "dist/periodic-promises.esm.js",
-  "browser": "dist/peiodic-promises.umd.js",
+  "module": "dist/periodic-promise.esm.js",
+  "browser": "dist/peiodic-promise.umd.js",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
@@ -14,7 +14,7 @@
   },
   "keywords": [
     "javascript",
-    "promises",
+    "promise",
     "timeout",
     "interval",
     "polling",

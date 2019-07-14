@@ -3,11 +3,10 @@ import commonjs from 'rollup-plugin-commonjs';
 import pkg from './package.json';
 
 export default [
-  // browser-friendly UMD build
   {
     input: 'src/index.js',
     output: {
-      name: 'periodc-promises',
+      name: 'periodc-promise',
       file: pkg.browser,
       format: 'umd',
     },
