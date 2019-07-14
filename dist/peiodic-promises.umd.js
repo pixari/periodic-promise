@@ -41,6 +41,19 @@
     });
   };
 
+  const calcLimits = (limit) => {
+    let stopByLimit;
+    let newLimit;
+    if (limit) {
+      newLimit = limit - 1;
+      stopByLimit = newLimit <= 0;
+    } else {
+      stopByLimit = false;
+      newLimit = null;
+    }
+    return { stopByLimit, newLimit };
+  };
+
   const periodicPromise = function periodicPromise(delay, action, callback, limit = null) {
     let config = {};
 
@@ -62,16 +75,7 @@
       return new Promise(async (resolve, reject) => {
         const actionResult = await handler();
         const stopByCallback = !callback(actionResult);
-
-        let stopByLimit;
-        let newLimit;
-        if (config.limit) {
-          newLimit = config.limit - 1;
-          stopByLimit = newLimit <= 0;
-        } else {
-          stopByLimit = false;
-          newLimit = null;
-        }
+        const { stopByLimit, newLimit } = calcLimits(config.limit);
 
         if (stopByCallback || stopByLimit) {
           resolve(actionResult);
