@@ -66,5 +66,22 @@ describe('periodicPromise', () => {
         done();
       });
     });
+
+    it('calls set timeout twice with 10ms when provided a 10ms delay', (done) => {
+      expect.assertions(3);
+     
+      const callback = jest.fn().mockName('callback').mockReturnValue(true)
+      const action = jest.fn().mockName('action').mockReturnValue(true);
+      const setTimeoutfn = jest.spyOn(global,'setTimeout');
+
+      const executionTimes = 3;
+
+      periodicPromise(10, action, callback, executionTimes).then(() => {
+        expect(callback).toBeCalledTimes(3);
+        expect(setTimeoutfn).toHaveBeenNthCalledWith(1,expect.any(Function), 10);
+        expect(setTimeoutfn).toHaveBeenNthCalledWith(2,expect.any(Function), 10);
+        done();
+      });
+    });
   });
 });
