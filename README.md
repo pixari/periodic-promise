@@ -14,4 +14,49 @@ Asynchronous periodic polling with promise.
        
 
 - - -
-WIP...
+## ⏰ What is "periodic promise"?
+
+It's a lightweight library that answers the following need:
+  * resolving a Promise at specified intervals (in milliseconds)
+  * calling a callback after every cycle exposing the response of the Promise
+  * externally breaking the cycle
+  * defining a specified number of iterations
+
+
+Promises are a JavaScript feature that allow you to defer further actions until after a previous action has completed, or respond to its failure.
+
+### :star: Usage in a nutshell
+
+This code will call every 2 seconds the "foo.api()" until the response will return "bar".
+
+```js
+(async () => {
+  const callback = r => r === 'bar';
+  await periodicPromise(2000, () => foo.api(), callback)
+})()
+```
+
+This example will do the same, but it will perform only 20 iterations.
+
+```js
+(async () => {
+  const callback = r => r === 'bar';
+  await periodicPromise(2000, () => foo.api(), callback, 20)
+})()
+```
+
+## :open_book: API
+
+### Syntax
+```js
+periodicPromise(delay, action, callback, limit);
+```
+
+### Parameter values
+| Parameter | Description                                                                                                                                                                                                                               | Default value    |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| delay     | Required. The intervals in milliseconds on how often to execute the code. ( > 0)                                                                                                                                                          | N/A              |
+| action    | Required. The function that will be executed.                                                                                                                                                                                             | N/A              |
+| callback  | Required. The function that will be call after every execution with the response of "action" as first param. If the returned value is truthy, the execution will continue. If the returned value is falsy, the execution will be stopped. | N/A              |
+| limit     | Optional. After how many times the execution will be stopped.                                                                                                                                                                             | false (no limit) |
+
