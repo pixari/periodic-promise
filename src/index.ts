@@ -1,30 +1,30 @@
 // Check utils
-const isInteger = n => typeof n === 'number' && Number.isInteger(n);
-const isFunction = f => typeof f === 'function';
+const isInteger = (n?: number) => typeof n === 'number' && Number.isInteger(n);
+const isFunction = (f: Function) => typeof f === 'function';
 
 // Parsing functions
-const parseDelay = (delay) => {
+const parseDelay = (delay: number) => {
   if (!isInteger(delay)) throw new TypeError('delay must be a valid Integer');
   return { delay: Number(delay) };
 };
 
-const parseAction = (action) => {
+const parseAction = (action: Function) => {
   if (!isFunction(action)) throw new TypeError('action must be a valid function');
   return { action };
 };
 
-const parseCallback = (callback) => {
+const parseCallback = (callback: Function) => {
   if (!isFunction(callback)) throw new TypeError('callback must be a valid function');
   return { callback };
 };
 
-const parseLimit = (limit) => {
-  if (!isInteger(limit) && (limit !== null)) throw new TypeError('limit must be a valid positive integer');
-  return { limit: limit === null ? false : limit };
+const parseLimit = (limit?: number) => {
+  if (!isInteger(limit) && (limit !== undefined)) throw new TypeError('limit must be a valid positive integer');
+  return { limit: limit === undefined ? undefined : limit };
 };
 
 // Helpers
-function timeout(delay) {
+function timeout(delay: number) {
   return new Promise((resolve) => {
     const id = setTimeout(() => {
       clearTimeout(id);
@@ -33,16 +33,16 @@ function timeout(delay) {
   });
 }
 
-const calcLimits = limit => (limit ? {
+const calcLimits = (limit?: number) => (limit ? {
   newLimit: limit - 1,
   stopByLimit: (limit - 1) <= 0,
 } : {
-  newLimit: null,
+  newLimit: undefined,
   stopByLimit: false,
 });
 
 // Config
-const generateConfig = (delay, action, callback, limit) => ({
+const generateConfig = (delay: number, action: Function, callback: Function, limit?: number) => ({
   ...parseDelay(delay),
   ...parseAction(action),
   ...parseCallback(callback),
@@ -51,10 +51,10 @@ const generateConfig = (delay, action, callback, limit) => ({
 
 
 const periodicPromise = function periodicPromise(
-  delay,
-  action,
-  callback,
-  limit = null,
+  delay: number,
+  action: Function,
+  callback: Function,
+  limit?: number,
 ) {
   try {
     const config = generateConfig(delay, action, callback, limit);
@@ -74,7 +74,12 @@ const periodicPromise = function periodicPromise(
         reject(TypeError);
       } else {
         await timeout(config.delay);
-        resolve(await periodicPromise(config.delay, config.action, config.callback, newLimit));
+        resolve(await periodicPromise(
+          config.delay,
+          config.action,
+          config.callback,
+          newLimit,
+        ));
       }
     });
   } catch (e) {

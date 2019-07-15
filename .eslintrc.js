@@ -1,4 +1,5 @@
 module.exports = {
+  parser: '@typescript-eslint/parser',
   extends: [
     'airbnb-base',
   ],
@@ -13,6 +14,10 @@ module.exports = {
     SharedArrayBuffer: 'readonly',
   },
   parserOptions: {
+    ecmaFeatures: {
+      jsx: true
+    },
+    project: './tsconfig.json',
     ecmaVersion: 2018,
     sourceType: 'module',
   },

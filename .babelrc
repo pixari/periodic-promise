@@ -7,7 +7,7 @@
         "targets": {
           "node": "current"
         }
-      }
+      },
     ]
   ]
 }

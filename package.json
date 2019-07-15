@@ -1,6 +1,6 @@
 {
   "name": "periodic-promise",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "description": "Asynchronous periodic polling with promise",
   "main": "index.js",
   "module": "dist/periodic-promise.esm.js",
@@ -9,7 +9,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "test": "jest",
-    "lint": "eslint \"./src/*.js\"",
+    "lint": "eslint \"./src/*.ts\"",
     "test:watch": "jest --watch",
     "pretest": "npm run build"
   },
@@ -26,14 +26,21 @@
   "devDependencies": {
     "@babel/core": "^7.5.4",
     "@babel/preset-env": "^7.5.4",
+    "@types/jest": "^24.0.15",
+    "@typescript-eslint/parser": "^1.12.0",
     "babel-jest": "^24.8.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.0",
-    "jest": "^24.8.0",
     "rollup": "^1.16.7",
     "rollup-plugin-commonjs": "^10.0.1",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "@types/jest": "^24.0.15"
+    "rollup-plugin-typescript": "^1.0.1",
+    "typescript": "^3.5.3",
+    "@types/node": "^12.6.2",
+    "ts-jest": "^24.0.2"
+  },
+  "dependencies": {
+    "jest": "^24.8.0"
   }
 }

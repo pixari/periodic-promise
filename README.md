@@ -58,7 +58,7 @@ periodicPromise(delay, action, callback, limit);
 | delay     | Required. The intervals in milliseconds on how often to execute the code. ( > 0)                                                                                                                                                          | N/A              |
 | action    | Required. The function that will be executed.                                                                                                                                                                                             | N/A              |
 | callback  | Required. The function that will be call after every execution with the response of "action" as first param. If the returned value is truthy, the execution will continue. If the returned value is falsy, the execution will be stopped. | N/A              |
-| limit     | Optional. After how many times the execution will be stopped.                                                                                                                                                                             | false (no limit) |
+| limit     | Optional. After how many times the execution will be stopped.                                                                                                                                                                             | undefined (no limit) |
 
 
 ## :pencil: Documentation
