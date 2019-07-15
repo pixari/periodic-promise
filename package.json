@@ -1,6 +1,6 @@
 {
   "name": "periodic-promise",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Asynchronous periodic polling with promise",
   "main": "index.js",
   "module": "dist/periodic-promise.esm.js",
