@@ -1,39 +1,36 @@
-// Utils
+// Check utils
 const isInteger = n => typeof n === 'number' && Number.isInteger(n);
 const isFunction = f => typeof f === 'function';
 
-const parseDelay = function parseDelay(delay) {
+// Parsing functions
+const parseDelay = (delay) => {
   if (!isInteger(delay)) throw new TypeError('delay must be a valid Integer');
   return { delay: Number(delay) };
 };
 
-const parseAction = function parseAction(action) {
+const parseAction = (action) => {
   if (!isFunction(action)) throw new TypeError('action must be a valid function');
   return { action };
 };
 
-const parseCallback = function parseCallback(callback) {
+const parseCallback = (callback) => {
   if (!isFunction(callback)) throw new TypeError('callback must be a valid function');
   return { callback };
 };
 
-const parseLimit = function parseLimit(limit) {
-  if (!isInteger(limit) && (limit !== null)) throw new TypeError('casdasd');
-  let limitValue = limit;
-  if (limit === null) {
-    limitValue = false;
-  }
-  return { limit: limitValue };
+const parseLimit = (limit) => {
+  if (!isInteger(limit) && (limit !== null)) throw new TypeError('limit must be a valid positive integer');
+  return { limit: limit === null ? false : limit };
 };
 
-const timeout = function timeout(delay) {
+function timeout(delay) {
   return new Promise((resolve) => {
     const id = setTimeout(() => {
       clearTimeout(id);
       resolve();
     }, delay);
   });
-};
+}
 
 const calcLimits = (limit) => {
   let stopByLimit;
