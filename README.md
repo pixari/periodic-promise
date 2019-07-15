@@ -10,6 +10,7 @@ Asynchronous periodic polling with promise.
   <a href="https://circleci.com/gh/pixari/periodic-promise"><img src="https://circleci.com/gh/pixari/periodic-promise/tree/master.png?style=shield" alt="CircleCI Status"></a>
   <a href="https://snyk.io/test/github/pixari/periodic-promise?targetFile=package.json"><img src="https://snyk.io/test/github/pixari/periodic-promise/badge.svg?targetFile=package.json" alt="Known Vulnerabilities"></a>
   <a href="https://codeclimate.com/github/pixari/periodic-promise/maintainability"><img src="https://api.codeclimate.com/v1/badges/0a6a290620d30cba593d/maintainability" alt="Maintainability"></a>
+    <a href="https://app.netlify.com/sites/periodic-promise/deploys"><img src="https://api.netlify.com/api/v1/badges/f6d1c032-c541-4a9d-937b-835a10300745/deploy-status" alt="Netlify Status"></a>
 </p>
        
 
@@ -44,6 +45,8 @@ This example will do the same, but it will perform only 20 iterations.
   await periodicPromise(2000, () => foo.api(), callback, 20)
 })()
 ```
+### Live example:
+[See the live example](https://periodic-promise.netlify.com/): https://periodic-promise.netlify.com/
 
 ## :open_book: API
 
