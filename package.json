@@ -1,10 +1,10 @@
 {
   "name": "periodic-promise",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Asynchronous periodic polling with promise",
   "main": "index.js",
   "module": "dist/periodic-promise.esm.js",
-  "browser": "dist/peiodic-promise.umd.js",
+  "browser": "dist/periodic-promise.umd.js",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
