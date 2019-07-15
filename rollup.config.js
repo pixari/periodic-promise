@@ -8,7 +8,7 @@ export default [
   {
     input: 'src/index.ts',
     output: {
-      name: 'periodic-promise',
+      name: 'periodicPromise',
       file: pkg.browser,
       format: 'umd',
     },
