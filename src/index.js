@@ -23,6 +23,7 @@ const parseLimit = (limit) => {
   return { limit: limit === null ? false : limit };
 };
 
+// Helpers
 function timeout(delay) {
   return new Promise((resolve) => {
     const id = setTimeout(() => {
@@ -32,18 +33,22 @@ function timeout(delay) {
   });
 }
 
-const calcLimits = (limit) => {
-  let stopByLimit;
-  let newLimit;
-  if (limit) {
-    newLimit = limit - 1;
-    stopByLimit = newLimit <= 0;
-  } else {
-    stopByLimit = false;
-    newLimit = null;
-  }
-  return { stopByLimit, newLimit };
-};
+const calcLimits = limit => (limit ? {
+  newLimit: limit - 1,
+  stopByLimit: (limit - 1) <= 0,
+} : {
+  newLimit: null,
+  stopByLimit: false,
+});
+
+// Config
+const generateConfig = (delay, action, callback, limit) => ({
+  ...parseDelay(delay),
+  ...parseAction(action),
+  ...parseCallback(callback),
+  ...parseLimit(limit),
+});
+
 
 const periodicPromise = function periodicPromise(
   delay,
@@ -51,25 +56,16 @@ const periodicPromise = function periodicPromise(
   callback,
   limit = null,
 ) {
-  let config = {};
-
   try {
-    config = {
-      ...parseDelay(delay),
-      ...parseAction(action),
-      ...parseCallback(callback),
-      ...parseLimit(limit),
-    };
+    const config = generateConfig(delay, action, callback, limit);
 
-    const handler = function handler() {
-      return new Promise(async (resolve, reject) => {
-        resolve(await action());
-        reject(TypeError);
-      });
-    };
+    const actionHandler = () => new Promise(async (resolve, reject) => {
+      resolve(await action());
+      reject(TypeError);
+    });
 
     return new Promise(async (resolve, reject) => {
-      const actionResult = await handler();
+      const actionResult = await actionHandler();
       const stopByCallback = !callback(actionResult);
       const { stopByLimit, newLimit } = calcLimits(config.limit);
 
