@@ -1,0 +1,93 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>periodic-promise examples</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">periodic-promise examples</a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="https://github.com/pixari/periodic-promise">GitHub <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://www.raffaelepizzari.com">Author</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container mt-4">
+      <div class="row mt-4">
+          <div>
+            <h2>Polling utc_datetime from WorldTimeApi.org </h2>
+            <p>The following code calls the given URL 5 times and shows the result in the below:</p>
+          </div>
+        </div>
+      <div class="row">
+        <div class="col">
+          <pre>
+            <code>
+              function runTest() {
+                const element = document.getElementById('content'); 
+        
+                const action = () => axios.get('/Europe/Rome', {
+                  baseURL: 'http://worldtimeapi.org/api/timezone',
+                });
+        
+                const callback = ({ data }) => {
+                  console.log(data);
+                  element.innerHTML = JSON.stringify(data.utc_datetime);
+                  return true;
+                };
+        
+                const pp = await periodicPromise(1000, action, callback, 5);
+              };
+            </code>
+          </pre>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h3>Live example: <button id="btn" type="button" onclick="runTest()" class="btn btn-primary">Run the code</button></h3>
+        </div>       
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              Executed <span id="times">0</span> times: <span id="content">waiting...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      async function runTest() {
+
+        document.getElementById('btn').setAttribute("disabled", ""); 
+        const contentElement = document.getElementById('content'); 
+        const timesElement = document.getElementById('times'); 
+
+        const action = () => axios.get('/Europe/Rome', {
+          baseURL: 'http://worldtimeapi.org/api/timezone',
+        });
+
+        let times = 0;
+        const callback = ({ data }) => {
+          times += 1;
+          contentElement.innerHTML = JSON.stringify(data.utc_datetime);
+          timesElement.innerHTML = JSON.stringify(times);
+          return true;
+        };
+
+        const pp = await periodicPromise(1000, action, callback, 5);
+        document.getElementById('btn').removeAttribute("disabled", ""); 
+      };
+    </script>
+    <script src="https://unpkg.com/periodic-promise@0.2.3/dist/periodic-promise.umd.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </body>
+</html>
