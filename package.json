@@ -39,7 +39,7 @@
     "typescript": "^3.5.3",
     "@types/node": "^12.6.2",
     "ts-jest": "^24.0.2",
-    "jest": "^24.8.0"
+    "jest": "^24.7.0"
   },
   "dependencies": {}
 }
