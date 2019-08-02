@@ -26,6 +26,24 @@ It's a lightweight library that answers the following need:
 
 Promises are a JavaScript feature that allow you to defer further actions until after a previous action has completed, or respond to its failure.
 
+
+### :star: How to get it
+
+NPM:
+
+```bash
+npm install periodic-promise
+```
+
+YARN:
+
+```bash
+yarn add periodic-promise
+```
+
+CDN: 
+https://unpkg.com/periodic-promise
+
 ### :star: Usage in a nutshell
 
 This code will call every 2 seconds the "foo.api()" until the response will return "bar".
@@ -62,7 +80,6 @@ periodicPromise(delay, action, callback, limit);
 | action    | Required. The function that will be executed.                                                                                                                                                                                             | N/A              |
 | callback  | Required. The function that will be call after every execution with the response of "action" as first param. If the returned value is truthy, the execution will continue. If the returned value is falsy, the execution will be stopped. | N/A              |
 | limit     | Optional. After how many times the execution will be stopped.                                                                                                                                                                             | undefined (no limit) |
-
 
 ## :pencil: Documentation
 ### :rotating_light: Tests
